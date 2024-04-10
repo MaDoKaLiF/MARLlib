@@ -1,0 +1,80 @@
+Failure # 1 (occurred at 2024-04-11_01-07-52)
+Traceback (most recent call last):
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\tune\trial_runner.py", line 890, in _process_trial
+    results = self.trial_executor.fetch_result(trial)
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\tune\ray_trial_executor.py", line 788, in fetch_result
+    result = ray.get(trial_future[0], timeout=DEFAULT_GET_TIMEOUT)
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\_private\client_mode_hook.py", line 106, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\worker.py", line 1625, in get
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(RayOutOfMemoryError): [36mray::COMATrainer.train_buffered()[39m (pid=10872, ip=127.0.0.1, repr=COMATrainer)
+  File "python\ray\_raylet.pyx", line 565, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 569, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 519, in ray._raylet.execute_task.function_executor
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\_private\function_manager.py", line 576, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\tracing\tracing_helper.py", line 451, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\tune\trainable.py", line 224, in train_buffered
+    result = self.train()
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\tracing\tracing_helper.py", line 451, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\rllib\agents\trainer.py", line 679, in train
+    raise e
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\rllib\agents\trainer.py", line 668, in train
+    result = Trainable.train(self)
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\tune\trainable.py", line 283, in train
+    result = self.step()
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\tracing\tracing_helper.py", line 451, in _resume_span
+    return method(self, *_args, **_kwargs)
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\rllib\agents\trainer_template.py", line 206, in step
+    step_results = next(self.train_exec_impl)
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\iter.py", line 756, in __next__
+    return next(self.built_iterator)
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\iter.py", line 783, in apply_foreach
+    for item in it:
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\iter.py", line 843, in apply_filter
+    for item in it:
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\iter.py", line 843, in apply_filter
+    for item in it:
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\iter.py", line 783, in apply_foreach
+    for item in it:
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\iter.py", line 876, in apply_flatten
+    for item in it:
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\iter.py", line 783, in apply_foreach
+    for item in it:
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\iter.py", line 783, in apply_foreach
+    for item in it:
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\iter.py", line 783, in apply_foreach
+    for item in it:
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\util\iter.py", line 471, in base_iterator
+    yield ray.get(futures, timeout=timeout)
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\_private\client_mode_hook.py", line 106, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\worker.py", line 1625, in get
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(RayOutOfMemoryError): [36mray::RolloutWorker.par_iter_next()[39m (pid=10872, ip=127.0.0.1, repr=<ray.rllib.evaluation.rollout_worker.modify_class.<locals>.Class object at 0x00000256F24144F0>)
+  File "python\ray\_raylet.pyx", line 526, in ray._raylet.execute_task
+  File "c:\Users\PC\anaconda3\envs\marllib\lib\site-packages\ray\_private\memory_monitor.py", line 150, in raise_if_low_memory
+    raise RayOutOfMemoryError(
+ray._private.memory_monitor.RayOutOfMemoryError: More than 95% of the memory on node DESKTOP-6P4N9VB is used (7.45 / 7.84 GB). The top 10 memory consumers are:
+
+PID	MEM	COMMAND
+10872	2.12GiB	c:\Users\PC\anaconda3\envs\marllib\python.exe -m ipykernel_launcher --f=c:\Users\PC\AppData\Roaming\
+14332	0.36GiB	C:\Users\PC\AppData\Local\Programs\Microsoft VS Code\Code.exe c:\Users\PC\.vscode\extensions\ms-pyth
+7936	0.29GiB	C:\Users\PC\AppData\Local\Programs\Microsoft VS Code\Code.exe --type=renderer --user-data-dir=C:\Use
+7988	0.24GiB	C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --type=renderer --no-appcompat-clear --l
+8580	0.19GiB	C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --type=renderer --no-appcompat-clear --l
+19868	0.16GiB	C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --flag-switches-begin --flag-switches-en
+6496	0.15GiB	C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --type=renderer --no-appcompat-clear --l
+8292	0.15GiB	C:\Users\PC\AppData\Local\Programs\Microsoft VS Code\Code.exe --type=gpu-process --user-data-dir=C:\
+9396	0.14GiB	C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --type=renderer --no-appcompat-clear --l
+10492	0.13GiB	C:\Users\PC\AppData\Local\Programs\Microsoft VS Code\Code.exe --type=utility --utility-sub-type=node
+
+In addition, up to 0.0 GiB of shared memory is currently being used by the Ray object store.
+---
+--- Tip: Use the `ray memory` command to list active objects in the cluster.
+--- To disable OOM exceptions, set RAY_DISABLE_MEMORY_MONITOR=1.
+---
+

@@ -39,7 +39,7 @@ class TestBaseOnMPE(unittest.TestCase):
         algo.fit(env, model, stop={"training_iteration": 1}, local_mode=False, num_gpus=0,
                  num_workers=2, share_policy="individual", checkpoint_end=False)
 
-    def test_a2_happo(self):
+    def test_a2_happo(self): #불러오기 실패
         env = marl.make_env(environment_name="mpe", map_name="simple_spread", force_coop=True)
         algo = marl.algos.happo(hyperparam_source="test", lr=tune.grid_search([0.0005, 0.001]))
         model = marl.build_model(env, algo, {"core_arch": "gru", "encode_layer": "8-8"})
